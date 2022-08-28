@@ -15,7 +15,7 @@ const Home = () => {
 				gallery && (
 					<Fragment>
 						<Grid items={gallery} currentIndex={currentPage + 1} pageSize={gallery.length / 250} />
-						<Pagination currentPage={currentPage} pagesTotal={gallery.length / 20} pageSize={20}/>
+						<Pagination currentPage={currentPage} pagesTotal={gallery.length / 20}/>
 					</Fragment>
 				)
 			}

@@ -78,7 +78,7 @@ describe('App Component', () => {
 	const tree = renderer.create(
 		<Provider store={store}>
 			<BrowserRouter>
-				<Pagination currentPage={currentPage} pagesTotal={20} pageSize={20}/>
+				<Pagination currentPage={currentPage} pagesTotal={20}/>
 			</BrowserRouter>
 		</Provider>
 	);

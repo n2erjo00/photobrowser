@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+//import { Routes, Route } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -23,7 +24,7 @@ const App = () => {
 	return (
 		<div className='App'>
 			<Routes>
-				<Route path='/' element={<Home />} index/>
+				<Route element={<Home />} index />
 				<Route path="/photo" element={<NotFound />} />
 				<Route path="/photo/*" element={<GalleryItem />} />
 				<Route path="/*" element={<NotFound />} />

@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
 import { rootReducer } from './root-reducer';
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 export const store = configureStore({
 	reducer: rootReducer,
-	middleware: [process.env.NODE_ENV !== 'production' && logger]
 })

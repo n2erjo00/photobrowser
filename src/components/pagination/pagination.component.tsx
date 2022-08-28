@@ -7,7 +7,13 @@ import { ReactComponent as ArrowLeft } from '../../icons/arrow-left.svg';
 import { ReactComponent as ArrowRight } from '../../icons/arrow-right.svg';
 import { PaginationContainer, PaginationList, PaginationListItem } from "./pagination.styles";
 
-const Pagination = ({ currentPage, pagesTotal, pageSize }) => {
+type PaginationProps = {
+	currentPage: number;
+	pagesTotal: number;
+}
+
+const Pagination = (props: PaginationProps) => {
+	const { currentPage, pagesTotal } = props;
 	const dispatch = useDispatch();
 	const pages = [];
 	const endIndex = (currentPage + 10 > pagesTotal) ? pagesTotal : currentPage + 10;
@@ -16,7 +22,7 @@ const Pagination = ({ currentPage, pagesTotal, pageSize }) => {
 		pages.push(startIndex)
 		++startIndex;
 	}
-	const moveToIndex = (index) => {
+	const moveToIndex = (index: number) => {
 		dispatch(setGalleryPage(index));
 	}
 	return (
@@ -32,7 +38,7 @@ const Pagination = ({ currentPage, pagesTotal, pageSize }) => {
 				}
 				{
 					pages.map(index => (
-						<PaginationListItem key={index} className={currentPage === index && 'selected'} title={`Jump to page ${index + 1}`} onClick={() => moveToIndex(index)}>{index + 1}</PaginationListItem>
+						<PaginationListItem key={index} className={currentPage === index ? 'selected' : ''} title={`Jump to page ${index + 1}`} onClick={() => moveToIndex(index)}>{index + 1}</PaginationListItem>
 					))
 				}
 				{

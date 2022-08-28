@@ -1,6 +1,12 @@
 import { ImageResponsive } from "./image.styles";
 
-const Image = ({ src, alt }) => {
+type ImageProps = {
+	src: string;
+	alt: string;
+}
+
+const Image = (props: ImageProps) => {
+	const { src, alt } = props;
 	return (
 		<ImageResponsive src={src} alt={alt} loading="lazy" />
 	)

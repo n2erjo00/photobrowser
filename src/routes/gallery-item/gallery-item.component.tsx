@@ -11,9 +11,11 @@ const GalleryItem = () => {
 	const id = pathname.substring(pathname.lastIndexOf('/', pathname.length) + 1);
 	const gallery = useSelector(selectGallery);
 	if (!gallery) {
-		return 'Loading...';
+		return (
+			<main>'Loading...'</main>
+		);
 	}
-	const { 0: { title, url }} = gallery.filter(item => item.id === id * 1);
+	const { 0: { title, url }} = gallery.filter(item => item.id === parseInt(id, 10));
 	return (
 		<main>
 			<h1>{title}</h1>
