@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { setGallery } from './store/gallery/gallery.action';
+import { doGet } from './utils/request';
+
+import Home from './routes/home/home.component';
+import GalleryItem from './routes/gallery-item/gallery-item.component';
+import NotFound from './routes/not-found/not-found.component';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		const getGallery = async() => {
+			const gallery = await doGet('http://jsonplaceholder.typicode.com/photos');
+			dispatch(setGallery(gallery));
+		}
+		getGallery();
+	}, [dispatch])
+	return (
+		<div className='App'>
+			<Routes>
+				<Route path='/' element={<Home />} index/>
+				<Route path="/photo" element={<NotFound />} />
+				<Route path="/photo/*" element={<GalleryItem />} />
+				<Route path="/*" element={<NotFound />} />
+			</Routes>
+	  </div>
+	);
 }
 
 export default App;
